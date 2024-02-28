@@ -6,22 +6,8 @@ on:
       - main
 
 jobs:
-  build:
+  create-cluster:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Docker
-      uses: actions/setup-docker@v2
-      with:
-        docker-version: '20.10.0'
-
-    - name: Create Kind Cluster
-      run: kind create cluster
-
-    - name: Configure Kubeconfig
-      run: kubectl cluster-info --context kind-kind
-
-    # Add your additional steps to deploy and test your application on the Kind cluster.
+      - name: Create k8s Kind Cluster
+        uses: helm/kind-action@v1
